@@ -4,9 +4,21 @@
 <meta charset="UTF-8">
 <title>Buying a Massage Chair</title>
 <link rel="stylesheet" href="style.css">
+<script src="swipes.js" async></script>
 </head>
 <body>
-<section>
+<section class="svgWrapper">
+<svg xmlns="http://www.w3.org/2000/svg">
+    <mask id="myMask" maskContentUnits="objectBoundingBox">
+        <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
+        <polygon fill="black" points="0.5,0.0 .9,1 0,0.3 1,0.3 0.1,1"></polygon>
+    </mask>
+    <rect x="0" y="0" fill="#f0f" width="100%" height="100%"></rect>
+    <text x="50%" y="50%">hello</text>
+    <rect x="0" y="0" fill="black" mask="url(#myMask)" width="100%" height="100%"></rect>
+</svg>
+</section>
+<section style="background: red;">
 > The case for the Massage Chair
 </section>
 <section>

@@ -1,6 +1,28 @@
+* {
+
+  will-change: height, width;
+  transform: translateZ(0);
+}
 html, body {
   height: 100%;
   margin: 0;
+}
+svg {
+  display: flex;
+  height: 1%;
+  width: 1%;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  position: fixed;
+  z-index: 1;
+  transform: translateZ(0);
+  will-change: height, width;
+}
+.starWipe {
+  transition: all .5s ease-in;
+  height: 600%;
+  width: 600%;
 }
 section {
   border: 1px dashed #666;
@@ -8,4 +30,10 @@ section {
   justify-content: center;
   align-items: center;
   display: flex;
+}
+.svgWrapper {
+  position: fixed;
+  height: 100%;
+  z-index: 1;
+  width: 100%;
 }
