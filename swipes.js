@@ -1,16 +1,10 @@
 const starContainer = document.getElementById('starContainer');
 const starSwipeText = [
-
   `The case for the Massage Chair`,
-
   `Massages = $$$$ + Happy`,
-
   `Massage Chair = Happy`,
-
   `Massages = $$$$$ + Massage Chair`,
-
   `Massage Chair = Massages - $$$$$`,
-
   `Picking a chair`,
 
   `Basic comfort of massage chair
@@ -30,8 +24,7 @@ Price range (~$700 - $2500)`,
   `Amazon Search Url`,
   `https://www.amazon.com/s?k=massage+chair&rh=p_36%3A70000-200000%2Cp_85%3A2470955011&s=review-rank&dc&qid=1585452780&rnid=2470954011&ref=sr_st_review-rank`,
 
-  `Amazon, $700 - $2000, 4 stars plus
-= 68 Results`,
+  `Amazon, $700 - $2000, 4 stars plus = 68 Results`,
 
   `With 50+ reviews = 7 results`,
 
@@ -50,7 +43,6 @@ Real Relax 2020 Massage Chair`,
 
   `Rollers don’t move`,
 
-
   `Whats left?!`,
 
   `Kahuna Massage Chair LM-6800S
@@ -68,7 +60,13 @@ Kahuna Massage Chair LM-6800`,
 
   `Remove Kahuna Massage Chair LM-6800`,
 
-  `Does not have full arm massage`
+  `Does not have full arm massage`,
+
+  `DONE! WE PICKED IT`,
+  `Kahuna Massage Chair LM-6800S`,
+  `Kahuna Massage Chair LM-6800S`,
+  `Kahuna Massage Chair LM-6800S`,
+  `Kahuna Massage Chair LM-6800S`,
 ];
 
 const colors = [
@@ -84,6 +82,9 @@ document.body.addEventListener('click', () => {
       const removeSvg = starContainer.firstElementChild;
       removeSvg.parentElement.removeChild(removeSvg);
     }
+    if (starSwipeText[contentIndex] == null) {
+      return;
+    }
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     const text = starSwipeText[contentIndex];
     const background = colors[colorIndex%colors.length];
@@ -98,12 +99,23 @@ document.body.addEventListener('click', () => {
     backgroundRect.setAttribute('fill', background);
 
     const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    textElement .setAttribute('x', '50%');
-    textElement .setAttribute('y', '50%');
-    textElement .setAttribute('class', 'targetText');
-    textElement .setAttribute('text-anchor', 'middle');
-    const textNode = document.createTextNode(text);
-    textElement.appendChild(textNode);
+    textElement.setAttribute('x', '50%');
+    textElement.setAttribute('class', 'targetText');
+    textElement.setAttribute('text-anchor', 'middle');
+    const textLines = text.split('\n');
+    textLines.forEach((line, index) => {
+      const tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+      tspan.setAttribute('x', '50%');
+      tspan.setAttribute('dy', index+ 'em');
+      const textNode = document.createTextNode(line);
+      tspan.appendChild(textNode);
+
+      if (line.startsWith('http')) {
+        // TODO
+      }
+      textElement.appendChild(tspan);
+    });
+    textElement.setAttribute('y', `${50 - textLines.length}%`);
 
     const maskRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     maskRect.setAttribute('mask', 'url(#starMask)');

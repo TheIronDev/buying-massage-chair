@@ -35,3 +35,8 @@ section {
   width: 100%;
   overflow: hidden;
 }
+
+text {
+  font-size: 2rem;
+  font-family: 'Delius Unicase', cursive;
+}
