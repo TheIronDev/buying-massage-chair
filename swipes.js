@@ -5,11 +5,12 @@ const starSwipeText = [
   `Massage Chair = Happy`,
   `Massages = $$$$$ + Massage Chair`,
   `Massage Chair = Massages - $$$$$`,
+
   `Picking a chair`,
 
   `Basic comfort of massage chair
 Strength of massage
-Presets and adjustability of massage chair
+Features
 Accessories
 Appearance of chair
 Price range of massage chairs`,
@@ -73,7 +74,14 @@ const colors = [
     'red', 'green', 'blue'
 ];
 
+const images = [
+    'http://image.blingee.com/images16/content/output/000/000/000/5a5/479671204_1295923.gif',
+    'https://media3.giphy.com/media/3oKIPfvFCwJDo6UnMA/giphy.gif?cid=ecf05e47174535caffd4ab0fa2fd59197650c540d72e65a0&rid=giphy.gif',
+    'https://media.giphy.com/media/8ZZGW8RoVoAi4/giphy.gif',
+];
+
 let colorIndex = 0;
+let imageIndex = 0;
 let contentIndex = 0;
 
 document.body.addEventListener('click', () => {
@@ -102,11 +110,12 @@ document.body.addEventListener('click', () => {
     textElement.setAttribute('x', '50%');
     textElement.setAttribute('class', 'targetText');
     textElement.setAttribute('text-anchor', 'middle');
+    textElement.setAttribute('fill', '#fff');
     const textLines = text.split('\n');
     textLines.forEach((line, index) => {
       const tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
       tspan.setAttribute('x', '50%');
-      tspan.setAttribute('dy', index+ 'em');
+      tspan.setAttribute('dy', '2em');
       const textNode = document.createTextNode(line);
       tspan.appendChild(textNode);
 
@@ -125,15 +134,26 @@ document.body.addEventListener('click', () => {
     maskRect.setAttribute('height', '100%');
     maskRect.setAttribute('width', '100%');
 
+
+
+    const image = document.createElementNS("http://www.w3.org/2000/svg", "image");
+    image.setAttribute('href', images[imageIndex%images.length]);
+    image.setAttribute('x', '50%');
+    image.setAttribute('y', '53%');
+    image.setAttribute('height', '200px');
+    image.setAttribute('width', '200px');
+
     starContainer.appendChild(svg);
     setTimeout(() => {
       svg.appendChild(backgroundRect);
       svg.appendChild(textElement);
+      svg.appendChild(image);
       svg.appendChild(maskRect);
       svg.classList.toggle('starWipe', true);
     }, 60);
 
     contentIndex++;
+    imageIndex++;
     colorIndex++;
   }
 });
